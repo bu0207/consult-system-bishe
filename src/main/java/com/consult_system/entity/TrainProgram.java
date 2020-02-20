@@ -5,6 +5,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+/**
+ * @description 培养方案
+ */
 @Entity
 @Table(name = "train_programe")
 @Data
@@ -12,6 +15,8 @@ import javax.persistence.*;
 public class TrainProgram extends BaseObject {
 
     public Integer gradeId;
+
+    public Integer grade;
 
     public String trainGoal;
 

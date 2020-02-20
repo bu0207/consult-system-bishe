@@ -35,6 +35,13 @@ public class UserController {
 		return ApiResult.ok(JSONUtils.toJsonString(map));
 	}
 
+	/**
+	 * 页面登录
+	 * @param password
+	 * @param studentId
+	 * @param role
+	 * @return
+	 */
 	@RequestMapping(value = "/user/login",method = RequestMethod.GET)
 	public ApiResult saveUser(String password, String studentId, String role){
 		List<User> userList = userService.findUserInfo(password, studentId, role);
@@ -45,6 +52,14 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * 页面注册
+	 * @param name
+	 * @param password
+	 * @param studentId
+	 * @param role
+	 * @return
+	 */
 	@RequestMapping(value = "/user/register",method = RequestMethod.GET)
 	public ApiResult registerUser(String name, String password, String studentId, String role){
 		List<User> userList = userService.registerUser(name, password, studentId);
