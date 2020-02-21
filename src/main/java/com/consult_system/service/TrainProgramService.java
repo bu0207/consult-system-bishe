@@ -34,7 +34,7 @@ public class TrainProgramService {
         trainProgram.setGradeId(Integer.valueOf(map.get("gradeId").toString()));
         trainProgram.setTrainGoal(map.get("trainGoal").toString());
         trainProgram.setTrainGoalIntroduce(map.get("trainGoalIntroduce").toString());
-        trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());
+//        trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());
         trainProgram.setTrainSpecial(map.get("trainSpecial").toString());
         trainProgram.setTrainSpecialIntroduce(map.get("trainSpecialIntroduce").toString());
         trainProgram.setMainCourse(map.get("mainCourse").toString());
@@ -43,7 +43,7 @@ public class TrainProgramService {
         trainProgram.setEducationalSystemDetail(map.get("educationalSystemDetail").toString());
         trainProgram.setCreditRequirment(map.get("creditRequirment").toString());
         trainProgram.setCreditRequirementIntroduce(map.get("creditRequirementIntroduce").toString());
-        trainProgram.setCreditRequirementDetail(map.get("creditRequirementDetail").toString());
+//        trainProgram.setCreditRequirementDetail(map.get("creditRequirementDetail").toString());
         trainProgram.setConferDegree(map.get("conferDegree").toString());
         trainProgram.setConferDegreeIntroduce(map.get("conferDegreeIntroduce").toString());
         trainProgramRepo.save(trainProgram);
@@ -78,7 +78,7 @@ public class TrainProgramService {
             trainProgram.setGradeId(Integer.valueOf(map.get("gradeId").toString()));
             trainProgram.setTrainGoal(map.get("trainGoal").toString());
             trainProgram.setTrainGoalIntroduce(map.get("trainGoalIntroduce").toString());
-            trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());
+//            trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());
             trainProgram.setTrainSpecial(map.get("trainSpecial").toString());
             trainProgram.setTrainSpecialIntroduce(map.get("trainSpecialIntroduce").toString());
             trainProgram.setMainCourse(map.get("mainCourse").toString());
@@ -87,7 +87,7 @@ public class TrainProgramService {
             trainProgram.setEducationalSystemDetail(map.get("educationalSystemDetail").toString());
             trainProgram.setCreditRequirment(map.get("creditRequirment").toString());
             trainProgram.setCreditRequirementIntroduce(map.get("creditRequirementIntroduce").toString());
-            trainProgram.setCreditRequirementDetail(map.get("creditRequirementDetail").toString());
+//            trainProgram.setCreditRequirementDetail(map.get("creditRequirementDetail").toString());
             trainProgram.setConferDegree(map.get("conferDegree").toString());
             trainProgram.setConferDegreeIntroduce(map.get("conferDegreeIntroduce").toString());
             trainProgramRepo.save(trainProgram);

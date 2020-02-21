@@ -2,6 +2,7 @@ package com.consult_system.entity;
 
 import com.consult_system.viewmodel.BaseObject;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "train_programe")
 @Data
+@EqualsAndHashCode(callSuper=true)
 
 public class TrainProgram extends BaseObject {
 
