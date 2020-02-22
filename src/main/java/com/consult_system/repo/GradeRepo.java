@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface GradeRepo extends JpaRepository<Grade, Integer> {
 
-    @Query("select a.grade from Grade a where a.isDeleted=0")
-    List<String> getGradeAll();
+    @Query("select a from Grade a where a.isDeleted=0")
+    List<Grade> getGradeAll();
 }

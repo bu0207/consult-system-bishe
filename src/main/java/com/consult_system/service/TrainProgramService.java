@@ -35,6 +35,7 @@ public class TrainProgramService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         TrainProgram trainProgram = new TrainProgram();
         trainProgram.setGradeId(Integer.valueOf(map.get("gradeId").toString()));
+        trainProgram.setGrade(Integer.valueOf(map.get("grade").toString()));
         trainProgram.setTrainGoal(map.get("trainGoal").toString());
         trainProgram.setTrainGoalIntroduce(map.get("trainGoalIntroduce").toString());
 //        trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());

@@ -15,6 +15,10 @@ public class GradeController {
     @Autowired
     private GradeService gradeService;
 
+    /**
+     * 获取年级信息
+     * @return
+     */
     @RequestMapping(value = "/grade/info",method = RequestMethod.GET)
     public ApiResult gradeInfo(){
         return ApiResult.ok(gradeService.getGradeAll());
