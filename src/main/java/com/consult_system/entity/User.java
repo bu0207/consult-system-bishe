@@ -17,11 +17,11 @@ import javax.persistence.Table;
 @Data
 public class User extends BaseObject {
 
-    private String name;
+    public  String name;
 
-    private String password;
+    public String password;
 
-    private String studentId;
+    public String studentId;
 
-    private String role;
+    public String role;
 }

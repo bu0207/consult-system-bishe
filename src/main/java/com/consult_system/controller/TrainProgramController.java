@@ -6,9 +6,7 @@ import com.consult_system.util.MapUtil;
 import com.consult_system.viewmodel.ApiResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,8 +49,8 @@ public class TrainProgramController {
     /**
      * 后台 --培养方案增加
      */
-    @RequestMapping(value = "/trainProgram/add", method = RequestMethod.GET)
-    public ApiResult trainProgramAdd(String jsonData) {
+    @RequestMapping(value = "/trainProgram/add", method = RequestMethod.POST)
+    public ApiResult trainProgramAdd(@RequestBody String jsonData) {
         if (!StringUtils.isEmpty(jsonData)) {
             trainProgramService.trainProgramAdd(jsonData);
         } else {
@@ -87,7 +85,7 @@ public class TrainProgramController {
      * @return
      */
     @RequestMapping(value = "/trainProgram/alter", method = RequestMethod.POST)
-    public ApiResult trainProgramAlter(Integer id, String jsonData) {
+    public ApiResult trainProgramAlter(@RequestParam("id") Integer id, @RequestBody String jsonData) {
         if (!StringUtils.isEmpty(id) && !StringUtils.isEmpty(jsonData)) {
             trainProgramService.trainProgramAlter(id, jsonData);
         } else {
