@@ -1,5 +1,7 @@
 package com.consult_system.controller;
 
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import com.consult_system.entity.TrainProgram;
 import com.consult_system.service.TrainProgramService;
 import com.consult_system.util.MapUtil;
@@ -52,6 +54,15 @@ public class TrainProgramController {
     @RequestMapping(value = "/trainProgram/add", method = RequestMethod.POST)
     public ApiResult trainProgramAdd(@RequestBody String jsonData) {
         if (!StringUtils.isEmpty(jsonData)) {
+            try {
+                JSONObject.parseObject(jsonData);
+            } catch (JSONException ex) {
+                try {
+                    JSONObject.parseArray(jsonData);
+                } catch (JSONException ex1) {
+                    return ApiResult.error("json格式不正确");
+                }
+            }
             trainProgramService.trainProgramAdd(jsonData);
         } else {
             return ApiResult.error("数据传入为空");
