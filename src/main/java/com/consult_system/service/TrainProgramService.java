@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +32,7 @@ public class TrainProgramService {
      */
     public void trainProgramAdd(String jsonData){
         Map<String,Object> map = JSONUtils.toMap(jsonData);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         TrainProgram trainProgram = new TrainProgram();
         trainProgram.setGradeId(Integer.valueOf(map.get("gradeId").toString()));
         trainProgram.setTrainGoal(map.get("trainGoal").toString());
@@ -46,6 +49,8 @@ public class TrainProgramService {
 //        trainProgram.setCreditRequirementDetail(map.get("creditRequirementDetail").toString());
         trainProgram.setConferDegree(map.get("conferDegree").toString());
         trainProgram.setConferDegreeIntroduce(map.get("conferDegreeIntroduce").toString());
+        trainProgram.setCreateTime(new Date());
+        trainProgram.setUpdateTime(new Date());
         trainProgramRepo.save(trainProgram);
     }
 
@@ -76,6 +81,7 @@ public class TrainProgramService {
         Map<String,Object> map = JSONUtils.toMap(jsonData);
         if (!StringUtils.isEmpty(trainProgram)){
             trainProgram.setGradeId(Integer.valueOf(map.get("gradeId").toString()));
+            trainProgram.setGrade(Integer.valueOf(map.get("grade").toString()));
             trainProgram.setTrainGoal(map.get("trainGoal").toString());
             trainProgram.setTrainGoalIntroduce(map.get("trainGoalIntroduce").toString());
 //            trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());
