@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "train_programe")
 @Data
-@EqualsAndHashCode(callSuper=true)
+@EqualsAndHashCode(callSuper=false)
 
 public class TrainProgram extends BaseObject {
 
