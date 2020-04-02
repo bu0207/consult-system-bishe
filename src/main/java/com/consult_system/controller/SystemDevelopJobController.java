@@ -13,6 +13,7 @@ public class SystemDevelopJobController {
     @Autowired
     private SystemDevelopJobService systemDevelopJobService;
 
+    // 查询岗位
     @RequestMapping(value = "/query/job",method = RequestMethod.POST)
     public ApiResult queryTrainDirectionJob(Integer id){
         return ApiResult.ok(systemDevelopJobService.queryTrainDirectionJob(id));

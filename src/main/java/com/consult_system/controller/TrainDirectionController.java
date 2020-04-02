@@ -5,10 +5,8 @@ import com.consult_system.service.TrainDirectionService;
 import com.consult_system.viewmodel.ApiResult;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author jacob
@@ -31,7 +29,7 @@ public class TrainDirectionController {
     }
 
     /**
-     * 增加培养方向
+     * 后台-增加培养方向
      * @param json
      * @return
      */
@@ -47,6 +45,27 @@ public class TrainDirectionController {
             }
         }
         trainDirectionService.insertTrainDirection(json);
+        return ApiResult.ok();
+    }
+
+    /**
+     * 后台-删除培养方向
+     */
+    @RequestMapping(value = "/delete/train/direction",method = RequestMethod.POST)
+    public ApiResult deleteTrainDirection(Integer id){
+        return ApiResult.ok(trainDirectionService.deleteTrainDirection(id));
+    }
+
+    /**
+     * 后台-修改培养方向
+     */
+    @RequestMapping(value = "/alter/train/direction",method = RequestMethod.POST)
+    public ApiResult alterTrainDirection(@RequestParam("id") Integer id, @RequestBody String jsonData){
+        if (!StringUtils.isEmpty(id) && !StringUtils.isEmpty(jsonData)) {
+            trainDirectionService.alterTrainDirection(id, jsonData);
+        } else {
+            return ApiResult.error("数据异常");
+        }
         return ApiResult.ok();
     }
 

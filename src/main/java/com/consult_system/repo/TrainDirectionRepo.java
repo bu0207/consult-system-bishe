@@ -12,6 +12,6 @@ public interface TrainDirectionRepo extends JpaRepository<TrainDirection,Integer
     @Query("select a from TrainDirection a")
     List<TrainDirection> getAllTrainDirection();
 
-    @Query("select a from TrainDirection a where a.keyId=?1")
+    @Query("select a from TrainDirection a where a.keyId=?1 and a.isDeleted=0")
     TrainDirection findByKeyId(Integer id);
 }
