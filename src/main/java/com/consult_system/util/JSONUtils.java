@@ -3,9 +3,13 @@ package com.consult_system.util;
 import java.io.IOException;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
+import com.consult_system.viewmodel.ApiResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.util.StringUtils;
 
 /**
  * @author jacob
@@ -42,5 +46,18 @@ public class JSONUtils {
 
         return result;
 
+    }
+
+    public static boolean checkIsJson(String jsonData){
+        try {
+            JSONObject.parseObject(jsonData);
+        } catch (JSONException ex) {
+            try {
+                JSONObject.parseArray(jsonData);
+            } catch (JSONException ex1) {
+                return false;
+            }
+        }
+        return true;
     }
 }

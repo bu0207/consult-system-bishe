@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface TrainDirectionRepo extends JpaRepository<TrainDirection,Integer> {
-    @Query("select a from TrainDirection a")
+    @Query("select a from TrainDirection a where a.isDeleted=0")
     List<TrainDirection> getAllTrainDirection();
 
     @Query("select a from TrainDirection a where a.keyId=?1 and a.isDeleted=0")

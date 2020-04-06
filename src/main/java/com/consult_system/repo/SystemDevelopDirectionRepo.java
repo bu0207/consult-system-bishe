@@ -14,6 +14,9 @@ import java.util.List;
 
 @Repository
 public interface SystemDevelopDirectionRepo extends JpaRepository<SystemDevelopDirection,Integer> {
-    @Query("select a from SystemDevelopDirection a where a.trainDirectionId = ?1")
+    @Query("select a from SystemDevelopDirection a where a.trainDirectionId = ?1 and a.isDeleted=0")
     List<SystemDevelopDirection> findAllByTrainDirectionId(Integer trainDirectionId);
+
+    @Query("select a from SystemDevelopDirection a where a.keyId = ?1 and a.isDeleted=0")
+    SystemDevelopDirection findSystemDevelopDirectionByKeyId(Integer id);
 }

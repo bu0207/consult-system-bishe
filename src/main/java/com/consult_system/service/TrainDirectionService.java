@@ -3,10 +3,13 @@ package com.consult_system.service;
 import com.consult_system.entity.TrainDirection;
 import com.consult_system.repo.TrainDirectionRepo;
 import com.consult_system.util.JSONUtils;
+import com.consult_system.util.MapUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +23,17 @@ public class TrainDirectionService {
         this.trainDirectionRepo = trainDirectionRepo;
     }
 
-    public List<TrainDirection> getAllTrainDirection(){
-        return trainDirectionRepo.getAllTrainDirection();
+    public List<Map<String,Object>> getAllTrainDirection(){
+        List<TrainDirection> list = trainDirectionRepo.getAllTrainDirection();
+        List<Map<String,Object>> resultList = new ArrayList<>();
+        for (int i = 0;i<list.size();i++){
+            Map<String,Object> map = MapUtil.beanToMap(list.get(i));
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            map.put("updateTime",simpleDateFormat.format(map.get("updateTime")));
+            map.put("createTime",simpleDateFormat.format(map.get("createTime")));
+            resultList.add(map);
+        }
+        return resultList;
     }
 
     public void insertTrainDirection(String json){
@@ -30,6 +42,11 @@ public class TrainDirectionService {
         trainDirection.setCertificate(map.get("certificate").toString());
         trainDirection.setTrainDirectionContent(map.get("trainDirectionContent").toString());
         trainDirection.setTrainDirectionName(map.get("trainDirectionName").toString());
+        trainDirection.setCreateTime(
+                new Date());
+        if (!StringUtils.isEmpty(map.get("picture"))){
+            trainDirection.setPicture(map.get("picture").toString());
+        }
         trainDirectionRepo.save(trainDirection);
     }
 
@@ -51,8 +68,15 @@ public class TrainDirectionService {
             trainDirection.setTrainDirectionName(map.get("trainDirectionName").toString());
             trainDirection.setTrainDirectionContent(map.get("trainDirectionContent").toString());
             trainDirection.setCertificate(map.get("certificate").toString());
+            if (!StringUtils.isEmpty(map.get("picture"))){
+                trainDirection.setPicture(map.get("picture").toString());
+            }
             trainDirection.setUpdateTime(new Date());
             trainDirectionRepo.save(trainDirection);
         }
+    }
+
+    public TrainDirection getDirectionById(Integer id){
+        return trainDirectionRepo.findByKeyId(id);
     }
 }

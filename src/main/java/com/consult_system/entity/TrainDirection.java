@@ -19,6 +19,8 @@ import javax.persistence.Table;
 @EqualsAndHashCode(callSuper=true)
 public class TrainDirection extends BaseObject {
 
+    public String picture;
+
     public String trainDirectionName;
 
     public String trainDirectionContent;

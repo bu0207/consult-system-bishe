@@ -69,4 +69,11 @@ public class TrainDirectionController {
         return ApiResult.ok();
     }
 
+    /**
+     * 根据id查询培养方向
+     */
+    @RequestMapping(value = "/get/direction/byId",method = RequestMethod.POST)
+    public ApiResult getDirectionById(Integer id){
+        return ApiResult.ok(trainDirectionService.getDirectionById(id));
+    }
 }
