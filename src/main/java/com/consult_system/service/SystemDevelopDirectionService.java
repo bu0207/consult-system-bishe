@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,10 +25,15 @@ public class SystemDevelopDirectionService {
 
     public List<Map<String,Object>> ProcessGetByTrainDirectionId(Integer trainDirectionId){
         List<Map<String,Object>> resultList = new ArrayList<>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         List<SystemDevelopDirection> list =  systemDevelopDirectionRepo.findAllByTrainDirectionId(trainDirectionId);
         for (int i=0; i<list.size(); i++){
             Map<String,Object> map = MapUtil.beanToMap(list.get(i));
             Object flowIntro = map.get("flowIntro");
+            String createTime = simpleDateFormat.format((Date) map.get("createTime"));
+            String updateTime = simpleDateFormat.format((Date) map.get("updateTime"));
+            map.put("createTime", createTime);
+            map.put("updateTime", updateTime);
             map.put("flowIntro",flowIntro.toString().split("#"));
             resultList.add(map);
         }
@@ -70,7 +76,16 @@ public class SystemDevelopDirectionService {
         }
     }
 
-    public SystemDevelopDirection processById(Integer id){
-        return systemDevelopDirectionRepo.findSystemDevelopDirectionByKeyId(id);
+    public Map<String,Object> processById(Integer id){
+        SystemDevelopDirection systemDevelopDirection = systemDevelopDirectionRepo.findSystemDevelopDirectionByKeyId(id);
+        Map<String,Object> map = MapUtil.beanToMap(systemDevelopDirection);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Object flowIntro = map.get("flowIntro");
+        String createTime = simpleDateFormat.format((Date) map.get("createTime"));
+        String updateTime = simpleDateFormat.format((Date) map.get("updateTime"));
+        map.put("createTime", createTime);
+        map.put("updateTime", updateTime);
+        map.put("flowIntro",flowIntro.toString().split("#"));
+        return map;
     }
 }
