@@ -17,13 +17,28 @@ import javax.persistence.Table;
 @Data
 public class SystemDevelopJob extends BaseObject {
 
+    /**
+     * 关联培养方向流程id
+     */
     public Integer systemDevelopDirectionId;
 
-    public String tag;
-
+    /**
+     * 岗位名字
+     */
     public String jobName;
 
+    /**
+     * 岗位要求
+     */
     public String jobRequire;
 
+    /**
+     * 职位列举
+     */
     public String jobList;
+
+    /**
+     * 工作内容
+     */
+    public String jobContent;
 }
