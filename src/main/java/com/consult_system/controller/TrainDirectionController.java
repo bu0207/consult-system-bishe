@@ -61,6 +61,15 @@ public class TrainDirectionController {
      */
     @RequestMapping(value = "/alter/train/direction",method = RequestMethod.POST)
     public ApiResult alterTrainDirection(@RequestParam("id") Integer id, @RequestBody String jsonData){
+        try{
+            JSONObject.parseObject(jsonData);
+        }catch (JSONException ex){
+            try {
+                JSONObject.parseArray(jsonData);
+            } catch (JSONException ex1) {
+                return ApiResult.error("json格式不正确");
+            }
+        }
         if (!StringUtils.isEmpty(id) && !StringUtils.isEmpty(jsonData)) {
             trainDirectionService.alterTrainDirection(id, jsonData);
         } else {

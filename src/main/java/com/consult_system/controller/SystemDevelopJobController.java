@@ -88,4 +88,9 @@ public class SystemDevelopJobController {
     public ApiResult queryJobList(Integer current, Integer pageSize){
         return ApiResult.ok(systemDevelopJobService.queryJobList(current, pageSize));
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    public ApiResult test(Integer currentPage, Integer pageSize, Integer id){
+        return ApiResult.error(systemDevelopJobService.test(currentPage, pageSize, id));
+    }
 }

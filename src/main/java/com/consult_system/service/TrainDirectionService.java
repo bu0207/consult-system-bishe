@@ -67,7 +67,7 @@ public class TrainDirectionService {
         if (!StringUtils.isEmpty(trainDirection)){
             trainDirection.setTrainDirectionName(map.get("trainDirectionName").toString());
             trainDirection.setTrainDirectionContent(map.get("trainDirectionContent").toString());
-            trainDirection.setCertificate(map.get("certificate").toString());
+//            trainDirection.setCertificate(map.get("certificate").toString());
             if (!StringUtils.isEmpty(map.get("picture"))){
                 trainDirection.setPicture(map.get("picture").toString());
             }

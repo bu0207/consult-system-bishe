@@ -13,6 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.*;
 
 @Service
@@ -22,6 +25,8 @@ public class SystemDevelopJobService {
     @Autowired
     private SystemDevelopDirectionRepo systemDevelopDirectionRepo;
 
+    @PersistenceContext
+    EntityManager entityManager;
 
     /**
      * 查询
@@ -142,4 +147,40 @@ public class SystemDevelopJobService {
         List<SystemDevelopJob> list = page.getContent();
         return page;
     }
+
+    public Map<String,Object> test(Integer currentPage, Integer pageSize, Integer id){
+        StringBuilder countSelectSql = new StringBuilder();
+        countSelectSql.append("select count(1) from SystemDevelopJob a where 1=1 ");
+        StringBuilder selectSql = new StringBuilder();
+        selectSql.append("select a from SystemDevelopJob a where 1=1 ");
+        Map<String,Object> params = new HashMap<>();
+        StringBuilder whereSql = new StringBuilder();
+        whereSql.append(" and a.isDeleted = 0 ");
+
+        if (null != id){
+            whereSql.append(" and a.keyId =" + id);
+        }
+        //查询数量
+        String countSql = new StringBuilder().append(countSelectSql).append(whereSql).toString();
+        Query countQuery = this.entityManager.createQuery(countSql,Long.class);
+        Long count = (Long)countQuery.getSingleResult();
+        //查询结果
+        String querySql = new StringBuilder().append(selectSql).append(whereSql).toString();
+        Query query = this.entityManager.createQuery(querySql,SystemDevelopJob.class);
+        //设置分页
+        query.setFirstResult(currentPage);
+        query.setMaxResults(pageSize);
+        List<SystemDevelopJob> list = query.getResultList();
+
+        //设置分页
+        Pageable pageable = PageRequest.of(currentPage, pageSize);
+        Page<SystemDevelopJob> page = new PageImpl<SystemDevelopJob>(list,pageable,count);
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("count",count);
+        map.put("list",list);
+        map.put("page",page);
+        return map;
+    }
+
 }
