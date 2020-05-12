@@ -47,4 +47,6 @@ public class TrainProgram extends BaseObject {
     public String conferDegree;
 
     public String conferDegreeIntroduce;
+
+    public String version;
 }

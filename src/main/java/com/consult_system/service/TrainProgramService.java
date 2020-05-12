@@ -50,6 +50,7 @@ public class TrainProgramService {
 //        trainProgram.setCreditRequirementDetail(map.get("creditRequirementDetail").toString());
         trainProgram.setConferDegree(map.get("conferDegree").toString());
         trainProgram.setConferDegreeIntroduce(map.get("conferDegreeIntroduce").toString());
+        trainProgram.setVersion(map.get("version").toString());
         trainProgram.setCreateTime(new Date());
         trainProgram.setUpdateTime(new Date());
         trainProgramRepo.save(trainProgram);
@@ -97,6 +98,7 @@ public class TrainProgramService {
 //            trainProgram.setCreditRequirementDetail(map.get("creditRequirementDetail").toString());
             trainProgram.setConferDegree(map.get("conferDegree").toString());
             trainProgram.setConferDegreeIntroduce(map.get("conferDegreeIntroduce").toString());
+            trainProgram.setVersion(map.get("version").toString());
             trainProgramRepo.save(trainProgram);
         }
     }

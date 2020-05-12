@@ -46,6 +46,7 @@ public class CourseSystemService {
         List<Map<String, Object>> termResultList = new ArrayList<>();
         if (type.equals("term")) {
             for (String termId : termList) {
+                System.out.println("termid<<<<<<" + termId);
                 Map<String, Object> termResultMap = new HashMap<>();
                 Criteria criteria2 = new Criteria();
                 criteria2.and("_id").is(termId);
@@ -54,6 +55,7 @@ public class CourseSystemService {
                 termResultMap.put("name", term.getName());
                 List<Map<String,Object>> courseResultList = new ArrayList<>();
                 for (String courseId : courseDetail) {
+                    System.out.println("courseid<<<<<<<<<" + courseId);
                     Map<String, Object> courseMap = new HashMap<>();
                     Criteria criteria3 = new Criteria();
                     criteria2.and("_id").is(courseId);

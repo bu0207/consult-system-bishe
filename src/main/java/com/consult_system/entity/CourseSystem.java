@@ -32,13 +32,13 @@ public class CourseSystem implements Serializable {
     /**
      * 所含培养方向
      */
-    @Field("term_detail")
+    @Field("direction_detail")
     public List<String> program;
 
     /**
      * 所含学期
      */
-    @Field("direction_detail")
+    @Field("term_detail")
     private List<String> term;
 
     public String getSystemName() {
