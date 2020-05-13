@@ -125,7 +125,7 @@ public class TrainProgramController {
      * @return
      */
     @RequestMapping(value = "/trainProgram/findByGrade",method = RequestMethod.GET)
-    public ApiResult findTrainProgramByGrade(Integer grade){
+    public ApiResult findTrainProgramByGrade(String grade){
         if (!StringUtils.isEmpty(grade)){
             return ApiResult.ok(trainProgramService.findTrainProgramByGrade(grade));
         }else {

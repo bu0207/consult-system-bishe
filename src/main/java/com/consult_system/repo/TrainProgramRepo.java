@@ -17,5 +17,5 @@ public interface TrainProgramRepo extends JpaRepository<TrainProgram, Integer> {
     TrainProgram findTrainProgramById(Integer id);
 
     @Query("select a from TrainProgram a where a.grade=?1")
-    TrainProgram findTrainProgramByGrade(Integer grade);
+    TrainProgram findTrainProgramByGrade(String grade);
 }

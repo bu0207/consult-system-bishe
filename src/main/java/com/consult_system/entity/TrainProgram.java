@@ -18,7 +18,7 @@ public class TrainProgram extends BaseObject {
 
     public Integer gradeId;
 
-    public Integer grade;
+    public String grade;
 
     public String trainGoal;
 

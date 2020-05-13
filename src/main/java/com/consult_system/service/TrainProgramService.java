@@ -35,7 +35,7 @@ public class TrainProgramService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         TrainProgram trainProgram = new TrainProgram();
         trainProgram.setGradeId(Integer.valueOf(map.get("gradeId").toString()));
-        trainProgram.setGrade(Integer.valueOf(map.get("grade").toString()));
+        trainProgram.setGrade(map.get("grade").toString());
         trainProgram.setTrainGoal(map.get("trainGoal").toString());
         trainProgram.setTrainGoalIntroduce(map.get("trainGoalIntroduce").toString());
 //        trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());
@@ -83,7 +83,7 @@ public class TrainProgramService {
         Map<String,Object> map = JSONUtils.toMap(jsonData);
         if (!StringUtils.isEmpty(trainProgram)){
             trainProgram.setGradeId(Integer.valueOf(map.get("gradeId").toString()));
-            trainProgram.setGrade(Integer.valueOf(map.get("grade").toString()));
+            trainProgram.setGrade(map.get("grade").toString());
             trainProgram.setTrainGoal(map.get("trainGoal").toString());
             trainProgram.setTrainGoalIntroduce(map.get("trainGoalIntroduce").toString());
 //            trainProgram.setTrainGoalDetail(map.get("trainGoalDetail").toString());
@@ -117,7 +117,7 @@ public class TrainProgramService {
      * @param grade
      * @return
      */
-    public TrainProgram findTrainProgramByGrade(Integer grade){
+    public TrainProgram findTrainProgramByGrade(String grade){
         return trainProgramRepo.findTrainProgramByGrade(grade);
     }
 }
