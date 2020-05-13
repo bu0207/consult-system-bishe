@@ -66,8 +66,10 @@ public class VideoService {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (Video video : list) {
             Map<String, Object> map = new HashMap<>();
+            map.put("id", video.getKeyId());
             map.put("videoUrl", video.getVideoUrl());
             map.put("fileName", video.getFileName());
+            map.put("fileOperate", video.getFileOperate());
             map.put("updateTime", simpleDateFormat.format(video.getUpdateTime()));
             resultList.add(map);
         }
@@ -82,5 +84,17 @@ public class VideoService {
      */
     public Video getOneById(Integer id) {
         return videoRepo.findOneByKeyId(id);
+    }
+
+    public String videoDelete(Integer id) {
+        Video video = videoRepo.findOneByKeyId(id);
+        if (null != video) {
+            video.setIsDeleted(0);
+            videoRepo.save(video);
+            return "成功";
+        } else {
+            return "失败";
+        }
+
     }
 }

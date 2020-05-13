@@ -60,4 +60,14 @@ public class VideoController {
     public ApiResult videoList(Integer id) {
         return ApiResult.ok(videoService.getOneById(id));
     }
+
+    /**
+     * 根据id删除
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "/video/delete", method = RequestMethod.POST)
+    public ApiResult videoDelete(Integer id) {
+        return ApiResult.ok(videoService.videoDelete(id));
+    }
 }
